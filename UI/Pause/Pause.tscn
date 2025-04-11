@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://1hlj0572m4u4"]
+
+[ext_resource type="Script" uid="uid://dht45uisoucuy" path="res://UI/Pause/pause.gd" id="1_0q68g"]
+[ext_resource type="Script" uid="uid://b3ndv2vu0dewk" path="res://UI/verticalMenu.gd" id="1_pjo5m"]
+[ext_resource type="Texture2D" uid="uid://bcul28bob66vk" path="res://Assets/Art/Cursor.png" id="2_iipk4"]
+[ext_resource type="AudioStream" uid="uid://bdb8o2k6r52c4" path="res://Assets/Sounds/Select.wav" id="4_gco0c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iipk4"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_0q68g"]
+font_size = 40
+
+[node name="Pause" type="CanvasLayer"]
+script = ExtResource("1_0q68g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.129412, 0.129412, 0.529412)
+
+[node name="VerticalMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("pointer", "AUDIO_PLAYER")]
+anchors_preset = -1
+anchor_left = 0.751
+anchor_top = 0.769
+anchor_right = 0.885
+anchor_bottom = 0.944
+offset_left = -0.152039
+offset_top = -0.312042
+offset_right = 0.479919
+offset_bottom = 0.287964
+script = ExtResource("1_pjo5m")
+pointer = NodePath("../Pointer")
+AUDIO_PLAYER = NodePath("../AudioStreamPlayer")
+metadata/_custom_type_script = "uid://b3ndv2vu0dewk"
+
+[node name="Resume" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Resume"
+label_settings = SubResource("LabelSettings_iipk4")
+
+[node name="Quit" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Quit"
+label_settings = SubResource("LabelSettings_0q68g")
+
+[node name="Pointer" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.683
+anchor_top = 0.772
+anchor_right = 0.728
+anchor_bottom = 0.851
+offset_left = 1.18396
+offset_top = -0.256012
+offset_right = 77.3438
+offset_bottom = 76.552
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_iipk4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gco0c")
+
+[connection signal="chose" from="VerticalMenu" to="." method="_on_item_chosen"]

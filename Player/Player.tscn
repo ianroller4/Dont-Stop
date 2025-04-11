@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://5p6mhnamiyne"]
+
+[ext_resource type="Script" uid="uid://cqheluljkgtrw" path="res://Player/player.gd" id="1_q3lat"]
+[ext_resource type="Texture2D" uid="uid://imgw4nyl4wik" path="res://Assets/Art/CharacterSprites.png" id="2_q3lat"]
+[ext_resource type="AudioStream" uid="uid://b0s4tobd8f2v4" path="res://Assets/Sounds/Hurt.wav" id="3_tok1r"]
+[ext_resource type="AudioStream" uid="uid://bluog0mim5glk" path="res://Assets/Sounds/PowerReady.wav" id="4_ddoul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tok1r"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddoul"]
+radius = 8.06226
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 61
+script = ExtResource("1_q3lat")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q3lat")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tok1r")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(7, 7)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_ddoul")
+debug_color = Color(0.922832, 5.06335e-05, 0.686051, 0.42)
+
+[node name="DashTimer" type="Timer" parent="."]
+
+[node name="DashCooldown" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AudioHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tok1r")
+
+[node name="AudioDashReady" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ddoul")
+
+[connection signal="area_entered" from="HurtBox" to="." method="hurt_box_entered"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

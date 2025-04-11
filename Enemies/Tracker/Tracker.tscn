@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci30itxb4uwfn"]
+
+[ext_resource type="Script" uid="uid://bp1e3whjfwmsw" path="res://Enemies/Tracker/tracker.gd" id="1_mucml"]
+[ext_resource type="Texture2D" uid="uid://imgw4nyl4wik" path="res://Assets/Art/CharacterSprites.png" id="2_v6yuc"]
+[ext_resource type="PackedScene" uid="uid://bcujhc8w8y21m" path="res://Helper/RayField/RayField.tscn" id="3_v6yuc"]
+
+[node name="Tracker" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_mucml")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v6yuc")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(5, 0, -5, 6, -3, 0, -5, -6)
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_layers = 9
+avoidance_mask = 9
+
+[node name="NavTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="RayField" parent="." instance=ExtResource("3_v6yuc")]
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+polygon = PackedVector2Array(10, 0, -8, 9, -5, 0, -8, -9)
+
+[connection signal="timeout" from="NavTimer" to="." method="nav_timer_timeout"]

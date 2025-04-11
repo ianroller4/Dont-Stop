@@ -1,0 +1,172 @@
+[gd_scene load_steps=13 format=3 uid="uid://dbtjrgyx05d7x"]
+
+[ext_resource type="Script" uid="uid://drdgwjt1qgs56" path="res://UI/HighScore/high_score.gd" id="1_jv2ax"]
+[ext_resource type="Script" uid="uid://b3ndv2vu0dewk" path="res://UI/verticalMenu.gd" id="2_wkghk"]
+[ext_resource type="Texture2D" uid="uid://bcul28bob66vk" path="res://Assets/Art/Cursor.png" id="3_wkghk"]
+[ext_resource type="AudioStream" uid="uid://bdb8o2k6r52c4" path="res://Assets/Sounds/Select.wav" id="4_jmfe2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jv2ax"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkghk"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_jmfe2"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_05mft"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_sosx7"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_05cus"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_i357i"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rokn"]
+font_size = 40
+
+[node name="HighScore" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jv2ax")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VerticalMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("pointer", "AUDIO_PLAYER")]
+layout_mode = 0
+offset_left = 865.0
+offset_top = 439.0
+offset_right = 957.0
+offset_bottom = 612.0
+script = ExtResource("2_wkghk")
+pointer = NodePath("../Pointer")
+AUDIO_PLAYER = NodePath("../AudioStreamPlayer")
+metadata/_custom_type_script = "uid://b3ndv2vu0dewk"
+
+[node name="Play" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Play"
+label_settings = SubResource("LabelSettings_jv2ax")
+
+[node name="MainMenu" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_wkghk")
+
+[node name="Quit" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Quit"
+label_settings = SubResource("LabelSettings_jmfe2")
+
+[node name="Pointer" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.683
+anchor_top = 0.679
+anchor_right = 0.728
+anchor_bottom = 0.758
+offset_left = 1.18396
+offset_top = 0.00799561
+offset_right = 77.3439
+offset_bottom = 76.816
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_wkghk")
+
+[node name="Positions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.174
+anchor_top = 0.154
+anchor_right = 0.203
+anchor_bottom = 0.603
+offset_left = -0.448013
+offset_top = 0.207993
+offset_right = 0.143982
+offset_bottom = 0.255981
+
+[node name="First" type="Label" parent="Positions"]
+layout_mode = 2
+text = "1."
+label_settings = SubResource("LabelSettings_05mft")
+
+[node name="Second" type="Label" parent="Positions"]
+layout_mode = 2
+text = "2."
+label_settings = SubResource("LabelSettings_sosx7")
+
+[node name="Third" type="Label" parent="Positions"]
+layout_mode = 2
+text = "3."
+label_settings = SubResource("LabelSettings_05cus")
+
+[node name="Fourth" type="Label" parent="Positions"]
+layout_mode = 2
+text = "4."
+label_settings = SubResource("LabelSettings_i357i")
+
+[node name="Fifth" type="Label" parent="Positions"]
+layout_mode = 2
+text = "5."
+label_settings = SubResource("LabelSettings_1rokn")
+
+[node name="Scores" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.254
+anchor_top = 0.154
+anchor_right = 0.426
+anchor_bottom = 0.603
+offset_left = 0.391998
+offset_top = 0.207993
+offset_right = 0.247955
+offset_bottom = 0.255981
+
+[node name="First" type="Label" parent="Scores"]
+layout_mode = 2
+text = "6500000"
+label_settings = SubResource("LabelSettings_05mft")
+horizontal_alignment = 2
+
+[node name="Second" type="Label" parent="Scores"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_sosx7")
+horizontal_alignment = 2
+
+[node name="Third" type="Label" parent="Scores"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_05cus")
+horizontal_alignment = 2
+
+[node name="Fourth" type="Label" parent="Scores"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_i357i")
+horizontal_alignment = 2
+
+[node name="Fifth" type="Label" parent="Scores"]
+layout_mode = 2
+text = "1000"
+label_settings = SubResource("LabelSettings_1rokn")
+horizontal_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jmfe2")
+
+[connection signal="chose" from="VerticalMenu" to="." method="_on_item_chosen"]

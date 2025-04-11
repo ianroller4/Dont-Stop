@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://11c08ifh4tia"]
+
+[ext_resource type="Texture2D" uid="uid://dedpqdr6gpyr2" path="res://Assets/Art/Heart.png" id="1_53dev"]
+[ext_resource type="Script" uid="uid://bscioy465vcku" path="res://UI/HUD/hud.gd" id="1_dm5mv"]
+[ext_resource type="Texture2D" uid="uid://bsgmkmbkte3t0" path="res://Assets/Art/DashReady.png" id="2_dm5mv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_53dev"]
+font_size = 40
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_dm5mv")
+
+[node name="HeartOne" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.031
+anchor_right = 0.069
+anchor_bottom = 0.123
+offset_left = 0.415998
+offset_top = -0.0880013
+offset_right = -19.488
+offset_bottom = -19.704
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_53dev")
+
+[node name="HeartTwo" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.087
+anchor_top = 0.031
+anchor_right = 0.139
+anchor_bottom = 0.123
+offset_left = -0.224007
+offset_top = -0.0880013
+offset_right = -20.128
+offset_bottom = -19.704
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_53dev")
+
+[node name="HeartThree" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.031
+anchor_right = 0.208
+anchor_bottom = 0.123
+offset_left = 0.287994
+offset_top = -0.0880013
+offset_right = -19.616
+offset_bottom = -19.704
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_53dev")
+
+[node name="DashReady" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.473
+anchor_top = 0.88
+anchor_right = 0.525
+anchor_bottom = 0.972
+offset_left = 0.104004
+offset_top = -0.240051
+offset_right = -19.8
+offset_bottom = -19.856
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+texture = ExtResource("2_dm5mv")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.483
+anchor_top = 0.031
+anchor_right = 0.517
+anchor_bottom = 0.116
+offset_left = -0.416016
+offset_top = -0.0880013
+offset_right = 0.415955
+offset_bottom = -0.167999
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_53dev")
+horizontal_alignment = 1

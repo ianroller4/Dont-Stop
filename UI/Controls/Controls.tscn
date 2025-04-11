@@ -1,0 +1,224 @@
+[gd_scene load_steps=12 format=3 uid="uid://4t1sh4vatmpt"]
+
+[ext_resource type="Script" uid="uid://bsaltbdi7urt5" path="res://UI/Controls/controls.gd" id="1_6ulj2"]
+[ext_resource type="Script" uid="uid://b3ndv2vu0dewk" path="res://UI/verticalMenu.gd" id="1_qj8mn"]
+[ext_resource type="Texture2D" uid="uid://bcul28bob66vk" path="res://Assets/Art/Cursor.png" id="2_6ulj2"]
+[ext_resource type="AudioStream" uid="uid://bdb8o2k6r52c4" path="res://Assets/Sounds/Select.wav" id="3_s3r3s"]
+[ext_resource type="Texture2D" uid="uid://mo2h8mc2sfp" path="res://Assets/Art/Keyboard Letters and Symbols.png" id="5_s3r3s"]
+[ext_resource type="Texture2D" uid="uid://bk230pdrervae" path="res://Assets/Art/Keyboard Extras.png" id="6_qhi63"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qhi63"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_edx6k"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_olhsh"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvo2d"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3r3s"]
+font_size = 30
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ulj2")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VerticalMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("pointer", "AUDIO_PLAYER")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.751
+anchor_top = 0.588
+anchor_right = 0.977
+anchor_bottom = 0.946
+offset_left = -0.152039
+offset_top = -1.02399
+offset_right = -0.504028
+offset_bottom = -1.008
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_qj8mn")
+pointer = NodePath("../Pointer")
+AUDIO_PLAYER = NodePath("../AudioStreamPlayer")
+metadata/_custom_type_script = "uid://b3ndv2vu0dewk"
+
+[node name="Play" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Play"
+label_settings = SubResource("LabelSettings_qhi63")
+
+[node name="HighScore" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "High Score"
+label_settings = SubResource("LabelSettings_edx6k")
+
+[node name="MainMenu" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_olhsh")
+
+[node name="Quit" type="Label" parent="VerticalMenu"]
+layout_mode = 2
+text = "Quit"
+label_settings = SubResource("LabelSettings_pvo2d")
+
+[node name="Pointer" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.683
+anchor_top = 0.586
+anchor_right = 0.728
+anchor_bottom = 0.665
+offset_left = 1.18396
+offset_top = 0.271973
+offset_right = 77.3439
+offset_bottom = 77.08
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_6ulj2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s3r3s")
+
+[node name="Up" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 80.0
+offset_right = 216.0
+offset_bottom = 122.0
+text = "Up"
+label_settings = SubResource("LabelSettings_s3r3s")
+
+[node name="W" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 100)
+scale = Vector2(3, 3)
+texture = ExtResource("5_s3r3s")
+hframes = 8
+vframes = 14
+frame = 38
+
+[node name="Left" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 130.0
+offset_right = 231.0
+offset_bottom = 172.0
+text = "Left"
+label_settings = SubResource("LabelSettings_s3r3s")
+
+[node name="A" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 150)
+scale = Vector2(3, 3)
+texture = ExtResource("5_s3r3s")
+hframes = 8
+vframes = 14
+frame = 16
+
+[node name="Down" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 180.0
+offset_right = 259.0
+offset_bottom = 222.0
+text = "Down"
+label_settings = SubResource("LabelSettings_s3r3s")
+
+[node name="S" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 200)
+scale = Vector2(3, 3)
+texture = ExtResource("5_s3r3s")
+hframes = 8
+vframes = 14
+frame = 34
+
+[node name="Right" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 230.0
+offset_right = 250.0
+offset_bottom = 272.0
+text = "Right"
+label_settings = SubResource("LabelSettings_s3r3s")
+
+[node name="D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 250)
+scale = Vector2(3, 3)
+texture = ExtResource("5_s3r3s")
+hframes = 8
+vframes = 14
+frame = 19
+
+[node name="AddEnemy" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 280.0
+offset_right = 338.0
+offset_bottom = 322.0
+text = "Add Enemy"
+label_settings = SubResource("LabelSettings_s3r3s")
+
+[node name="Q" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 300)
+scale = Vector2(3, 3)
+texture = ExtResource("5_s3r3s")
+hframes = 8
+vframes = 14
+frame = 32
+
+[node name="Pause" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 330.0
+offset_right = 262.0
+offset_bottom = 372.0
+text = "Pause"
+label_settings = SubResource("LabelSettings_s3r3s")
+
+[node name="E" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 350)
+scale = Vector2(3, 3)
+texture = ExtResource("5_s3r3s")
+hframes = 8
+vframes = 14
+frame = 20
+
+[node name="Dash" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 380.0
+offset_right = 250.0
+offset_bottom = 422.0
+text = "Dash"
+label_settings = SubResource("LabelSettings_s3r3s")
+
+[node name="Space" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 400)
+scale = Vector2(3, 3)
+texture = ExtResource("6_qhi63")
+hframes = 4
+vframes = 8
+frame = 10
+
+[connection signal="chose" from="VerticalMenu" to="." method="_on_item_chosen"]

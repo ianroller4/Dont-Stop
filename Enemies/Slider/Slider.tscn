@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dro485tdt8it7"]
+
+[ext_resource type="Script" uid="uid://ds5bmvic03b8f" path="res://Enemies/Slider/slider.gd" id="1_gkvmi"]
+[ext_resource type="Texture2D" uid="uid://imgw4nyl4wik" path="res://Assets/Art/CharacterSprites.png" id="2_gkvmi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkvmi"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2w1hf"]
+radius = 8.0
+
+[node name="Slider" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_gkvmi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gkvmi")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gkvmi")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_2w1hf")
+debug_color = Color(0.902954, 0.00015036, 0.754651, 0.42)

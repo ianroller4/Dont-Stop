@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://phbr8ver2beh"]
+
+[ext_resource type="Script" uid="uid://dreoeqysupmja" path="res://Enemies/Blocker/blocker.gd" id="1_lqmn7"]
+[ext_resource type="Texture2D" uid="uid://imgw4nyl4wik" path="res://Assets/Art/CharacterSprites.png" id="2_db3hd"]
+[ext_resource type="PackedScene" uid="uid://48qjbk24j8lb" path="res://Helper/RayField/BlockerRayField.tscn" id="3_db3hd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdfno"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_db3hd"]
+size = Vector2(10, 10)
+
+[node name="Blocker" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 32
+collision_mask = 11
+script = ExtResource("1_lqmn7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_db3hd")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rdfno")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayField" parent="." instance=ExtResource("3_db3hd")]
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_db3hd")
+debug_color = Color(0.901412, 0.000160372, 0.759568, 0.42)
