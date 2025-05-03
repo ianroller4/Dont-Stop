@@ -41,7 +41,7 @@ func _ready():
 
 """
 Purpose: 
-	Called every frame
+	Called every frame at a fixed rate of 60 fps
 
 Parameters: 
 	delta - Length of time since last frame
@@ -56,9 +56,11 @@ Purpose:
 	Check if blocker has reached its final destination
 """
 func target_reached_check():
+	# Check to see if the Blocker is in the general area of target destination
 	if position.x > targetPosition.x -0.5 and position.x < targetPosition.x + 0.5:
 		if position.y > targetPosition.y -0.5 and position.y < targetPosition.y + 0.5:
 			reachedTarget = true
+			# Adjusts scale of Blocker to fill area
 			$Sprite2D.scale = Vector2(1, 1)
 			$CollisionShape2D.scale = Vector2(2.5, 2.5)
 			$HitBox/CollisionShape2D.scale = Vector2(1.7, 1.7)
@@ -98,8 +100,7 @@ func update_correction_vector():
 			collisionDirection = Vector2.DOWN.rotated(rays[i].rotation) 
 			correctionVector += collisionDirection # Add vector to correction vector
 	if collisions > 0: # If any collisions occur
-		# Average the vector, inverse it, and then normalize
-		# This is done to so the character is pushed away from any obstacles
+		# Average the vector, inverse it (opposite direction of collisions), and then normalize
 		correctionVector = -(correctionVector / collisions).normalized()
 
 """
@@ -113,22 +114,9 @@ func update_final_vector():
 	# Check if both west and east are collising
 	var we_collisions = W.is_colliding() and E.is_colliding()
 	
-	# If either N and S or W and E are colliding then the character is moving in
-	# a corridor. Thus the character should use the direction vector to move straight.
-	# If this is not included the character tends to bounce around in a corridor due to
-	# collisions detected on either side when it just needs to go straight.
+	# To prevent character bouncing when moving through a corridor
 	if (ns_collisions or we_collisions):
 		finalVector = directionVector
 	else:
-		# Even with the correction vector the character sometimes gets stuck on corners
-		# This tends to happen when the resulting vector points into an obstacle since 
-		# the 2 vectors are too far apart
-		# when this happens the final vector gets inversed so that the character
-		# moves away from the obstacle first before continuing on its path
-		var radLimit = 135 * PI / 180
 		# Get average of direction and correction vectors and normalize
 		finalVector = ((directionVector + correctionVector) / 2).normalized()
-		
-		var angleBetween = abs(directionVector.angle_to(correctionVector))
-		if  angleBetween > radLimit and collisions > 1:
-			finalVector = -finalVector

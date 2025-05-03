@@ -3,12 +3,12 @@ class_name VerticalMenu extends VBoxContainer
 """ Selection Pointer """
 @export var pointer : Node
 
-signal chose(item : Control)
+""" Variables """
+var firstTime = true # Ensures sound does not play when first menu item gets focus
+signal chose(item : Control) # Signal for when item is chosen, sends the item witht the signal
 
 """ Audio """
 @export var AUDIO_PLAYER : AudioStreamPlayer
-
-var firstTime = true
 
 """
 Purpose:
@@ -21,9 +21,9 @@ func _ready():
 
 """
 Purpose:
-	
+	Handles the input for the UI
 Parameters:
-	
+	event: An input event
 """
 func _unhandled_input(event):
 	if not visible:
@@ -38,9 +38,10 @@ func _unhandled_input(event):
 
 """
 Purpose:
-	
+	Gets the items to add to the menu. Adds the children of this node if they are 
+	of type control
 Return:
-	
+	The array of control node children
 """
 func get_items() -> Array[Control]:
 	var items : Array[Control] = []
@@ -114,9 +115,10 @@ func update_selection():
 
 """
 Purpose:
-	
+	When focus changes this check if the new focus item is valid and if so calls
+	update selection and plays a sound if not first time entering the scene
 Parameters:
-	
+	item: Type control, item that is now in focus
 """
 func on_focus_changed(item : Control):
 	if not item or !(item in get_children()):

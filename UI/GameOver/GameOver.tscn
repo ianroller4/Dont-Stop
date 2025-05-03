@@ -132,4 +132,8 @@ horizontal_alignment = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_llnap")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="chose" from="VerticalMenu" to="." method="_on_item_chosen"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

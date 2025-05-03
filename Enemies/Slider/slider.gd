@@ -13,7 +13,7 @@ func _ready():
 
 """
 Purpose: 
-	Called every frame
+	Called every frame at a fixed rate of 60 fps
 
 Parameters: 
 	delta - Length of time since last frame
@@ -24,7 +24,6 @@ func _physics_process(delta):
 """
 Purpose:
 	Checks if slider has collided with an outer wall or player and adjusts direction
-	like the dvd logo bouncing on the border.
 """
 func dvdBounce(delta):
 	var collided = move_and_collide(velocity * delta)

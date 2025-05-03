@@ -87,7 +87,7 @@ texture = ExtResource("3_jxerj")
 0:0/0 = 0
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, -4, 0, -4, 0, 4, 8, 4)
 1:0/0 = 0
-1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(4, -8, -4, -8, -4, 8, 4, 8)
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-4, -8, -4, 8, 4, 8, 4, -8)
 2:0/0 = 0
 2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(4, 8, 4, 0, -4, 0, -4, 8)
 3:0/0 = 0
@@ -137,9 +137,7 @@ tile_set = SubResource("TileSet_68let")
 
 [node name="Player" parent="." instance=ExtResource("3_l3v54")]
 
-[node name="HUD" parent="Player" node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_ghvq8")]
-visible = false
-PLAYER = NodePath("..")
+[node name="HUD" parent="Player" instance=ExtResource("5_ghvq8")]
 
 [node name="Pause" parent="." instance=ExtResource("4_3e1m6")]
 process_mode = 2

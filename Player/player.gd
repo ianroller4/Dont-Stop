@@ -27,6 +27,7 @@ signal died
 @onready var C_TIMER := $DashCooldown
 var dashReady := true
 
+""" Dash Signals """
 signal dashUsed
 signal dashAvailable
 
@@ -36,7 +37,7 @@ signal dashAvailable
 
 """
 Purpose: 
-	Called every frame
+	Called every frame at a fixed rate of 60 fps
 
 Parameters: 
 	delta - Length of time since last frame
@@ -61,6 +62,7 @@ Purpose:
 func check_for_enemy_touch():
 	if HURT_BOX.has_overlapping_areas():
 		take_damage()
+		become_invincible()
 
 """
 Purpose:
@@ -73,8 +75,8 @@ func update_invincible():
 		invincibleCounter -= 1
 		if invincibleCounter == 0:
 			invincible = false
-			check_for_enemy_touch()
 			$Sprite2D.self_modulate.a = 1
+			check_for_enemy_touch()
 
 """
 Purpose: 
@@ -103,9 +105,15 @@ func take_damage():
 	AUDIO_PLAYER_HURT.play()
 	if health == 0:
 		emit_signal("died")
+
+"""
+Purpose:
+	Make necessary changes to start invincible phase
+"""
+func become_invincible():
 	invincible = true
 	invincibleCounter = 200
-	$Sprite2D.self_modulate.a = 0.4
+	$Sprite2D.self_modulate.a = 0.4 # To show invinciblility
 
 """
 Purpose:
@@ -116,6 +124,7 @@ Purpose:
 func hurt_box_entered(area):
 	if area.name == "HitBox" and !invincible:
 		take_damage()
+		become_invincible()
 
 func dash():
 	emit_signal("dashUsed")
