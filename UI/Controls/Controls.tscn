@@ -111,7 +111,6 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_s3r3s")
 hframes = 8
 vframes = 14
-frame = 38
 
 [node name="Left" type="Label" parent="."]
 layout_mode = 0
@@ -129,7 +128,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_s3r3s")
 hframes = 8
 vframes = 14
-frame = 16
+frame = 2
 
 [node name="Down" type="Label" parent="."]
 layout_mode = 0
@@ -147,7 +146,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_s3r3s")
 hframes = 8
 vframes = 14
-frame = 34
+frame = 1
 
 [node name="Right" type="Label" parent="."]
 layout_mode = 0
@@ -165,7 +164,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_s3r3s")
 hframes = 8
 vframes = 14
-frame = 19
+frame = 3
 
 [node name="AddEnemy" type="Label" parent="."]
 layout_mode = 0
@@ -183,7 +182,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_s3r3s")
 hframes = 8
 vframes = 14
-frame = 32
+frame = 41
 
 [node name="Pause" type="Label" parent="."]
 layout_mode = 0
@@ -201,7 +200,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_s3r3s")
 hframes = 8
 vframes = 14
-frame = 20
+frame = 39
 
 [node name="Dash" type="Label" parent="."]
 layout_mode = 0
