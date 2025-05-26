@@ -22,8 +22,8 @@
 
 - **WASD / Arrow Keys**: Move
 - **Space**: Dash
-- **Q**: Add enemy
-- **E**: Pause
+- **Z**: Add enemy
+- **X**: Pause
 
 ## Story
 
